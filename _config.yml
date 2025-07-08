@@ -1,0 +1,57 @@
+# Jekyll Configuration for Performance Optimization
+title: "Open Source Data Science Masters"
+description: "The open-source curriculum for learning to be a Data Scientist"
+baseurl: ""
+url: "https://datasciencemasters.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+incremental: true
+
+# Performance optimizations
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: [html, head, body]
+  blanklines: false
+  profile: false
+
+# SEO and performance
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude files from build
+exclude:
+  - .git/
+  - .github/
+  - README.md
+
+# Optimization settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Caching and performance
+safe: true
+incremental: true
+
+# Site settings for better performance
+timezone: UTC
+encoding: utf-8
+
+# Default layout
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

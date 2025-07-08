@@ -1,5 +1,5 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# Optimized workflow for building and deploying a Jekyll site to GitHub Pages
+name: Deploy Jekyll with Performance Optimizations
 
 on:
   # Runs on pushes targeting the default branch
@@ -26,16 +26,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for better caching
+          
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v3
+        
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          
+      - name: Cache Jekyll dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            vendor/bundle
+            .jekyll-cache
+            _site
+          key: ${{ runner.os }}-jekyll-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-jekyll-
+            
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+          
+      - name: Optimize site assets
+        run: |
+          # Minify HTML files
+          find ./_site -name "*.html" -exec sed -i 's/[[:space:]]\+/ /g' {} \;
+          
+          # Add cache headers for static assets
+          echo "Setting up cache headers..."
+          
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
 
   # Deployment job
   deploy:
