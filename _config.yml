@@ -1,0 +1,17 @@
+title: Open Source Data Science Masters
+baseurl: "" # Deploy site at root
+
+# Enable additional functionality
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-assets
+  - jekyll-compress-html
+  - jekyll-include-cache
+
+# Exclude development and build artifacts
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
