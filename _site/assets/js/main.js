@@ -1,3 +1,1 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Site loaded");
-});
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("img:not([loading])").forEach(e=>{e.setAttribute("loading","lazy")}),console.log("Site loaded")});

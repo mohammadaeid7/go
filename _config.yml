@@ -15,6 +15,18 @@ exclude:
   - node_modules
   - vendor
 
+# Use compressed output for Sass-generated CSS
+sass:
+  style: compressed
+
+# Minifier plugin options
+jekyll-minifier:
+  remove_comments: true
+  compress_css: true
+  compress_javascript: true
+  uglifier_args:
+    harmony: true
+
 # HTML compression
 compress_html:
   clippings: all
