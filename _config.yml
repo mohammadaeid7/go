@@ -8,6 +8,7 @@ plugins:
   - jekyll-assets
   - jekyll-compress-html
   - jekyll-include-cache
+  - jekyll-critical-css
 
 # Exclude development and build artifacts
 exclude:
@@ -15,3 +16,40 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+
+# HTML compression
+compress_html:
+  clippings: all
+  ignore:
+    envs: [development]
+
+# Critical CSS generation settings
+critical_css:
+  enabled: true
+  output_path: assets/css/critical.css
+  penthouse:
+    timeout: 120000
+
+# Asset pipeline settings via jekyll-assets
+assets:
+  sources:
+    - _assets/css
+    - _assets/js
+    - _assets/images
+  compress:
+    css: true
+    js: true
+  autoprefixer:
+    browsers: [">= 1%"]
+    cascade: false
+  cachebust: true
+
+# Image optimization via image_optim within jekyll-assets
+image_optim:
+  nice: 10
+  threads: 8
+  jpegoptim:
+    allow_lossy: true
+    max_quality: 85
+  pngquant:
+    quality: 65-90

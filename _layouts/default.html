@@ -1,0 +1,34 @@
+{% compress_html %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+
+    {%- comment -%}
+    Inline critical CSS for above-the-fold content
+    {%- endcomment -%}
+    {% asset assets/css/critical.css @inline %}
+
+    {%- comment -%}
+    Preload full CSS bundle; it will be applied after load
+    {%- endcomment -%}
+    <link rel="preload" as="style" href="{% asset main.css @path %}" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="{% asset main.css @path %}" /></noscript>
+
+    {%- comment -%} Example webfont preload hook {%- endcomment -%}
+    {% if site.google_fonts %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family={{ site.google_fonts | uri_escape }}&display=swap" rel="stylesheet" />
+    {% endif %}
+  </head>
+  <body>
+    {{ content }}
+
+    <script defer src="{% asset main.js @path %}"></script>
+  </body>
+</html>
+{% endcompress_html %}
