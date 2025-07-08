@@ -1,0 +1,104 @@
+# Site settings
+title: "Open Source Data Science Masters"
+description: "The open-source curriculum for learning to be a Data Scientist"
+url: "https://datasciencemasters.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Performance optimizations
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
+# Plugins for performance
+plugins:
+  - jekyll-compress-images
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Open Source Data Science Masters"
+      comments: true
+      share: true
+
+# Pagination
+paginate: 10
+paginate_path: "/page/:num/"
+
+# Feed
+feed:
+  path: atom.xml
+  limit: 10
+
+# SEO
+author:
+  name: "Open Source Data Science Masters"
+  email: ""
+  bio: "The open-source curriculum for learning to be a Data Scientist"
+  location: ""
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/datasciencemasters/go"
+
+# Social sharing
+social-share:
+  facebook: true
+  twitter: true
+  linkedin: true
+  reddit: true
+
+# Analytics (if needed)
+google_analytics: ""
+google_analytics_anonymize_ip: true
+
+# Performance settings
+sass:
+  style: compressed
+  load_paths:
+    - _sass
+    - node_modules
+
+# Cache busting
+cache_buster:
+  base_url: ""
+  version: "1.0.0"
+
+# Image optimization
+image_optim:
+  pngquant: true
+  jpegoptim: true
+  gifsicle: true
+  svgo: true
