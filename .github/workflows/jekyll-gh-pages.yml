@@ -41,8 +41,40 @@ jobs:
         with:
           source: ./
           destination: ./_site
+
+      # ---------- Asset optimisation & PWA ----------
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install NPM dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Optimise images with imagemin
+        run: npm run optimize-images
+
+      - name: Generate service worker
+        run: npm run generate-sw
+
+      - name: Lighthouse performance audit (local build)
+        run: |
+          npm run serve &
+          SERVER_PID=$!
+          npx wait-on http://localhost:8080
+          npm run lighthouse
+          kill $SERVER_PID
+        env:
+          CI: true
+        timeout-minutes: 5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: lhci-report.json
 
   # Deployment job
   deploy:

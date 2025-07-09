@@ -1,0 +1,24 @@
+{
+  "name": "open-source-data-science-masters-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling to optimise assets for the OSDM Jekyll site",
+  "scripts": {
+    "optimize-images": "npx imagemin '_site/**/*.{jpg,jpeg,png,svg,gif}' --plugin=mozjpeg --plugin=pngquant --plugin=gifsicle --plugin=svgo --out-dir=_site",
+    "generate-sw": "workbox generateSW workbox-config.js",
+    "serve": "http-server _site -p 8080",
+    "lighthouse": "lighthouse http://localhost:8080 --quiet --output json --output-path ./lhci-report.json --chrome-flags='--headless'"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.1.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.0",
+    "imagemin-svgo": "^10.0.0",
+    "lighthouse": "^10.4.0",
+    "workbox-cli": "^7.0.0",
+    "wait-on": "^7.0.1"
+  }
+}

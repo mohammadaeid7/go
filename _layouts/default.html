@@ -29,5 +29,13 @@
     {{ content }}
 
     <script defer src="{{ '/assets/js/main.js' | relative_url }}?v={{ v }}"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}');
+        });
+      }
+    </script>
   </body>
 </html>
